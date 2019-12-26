@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ai-daw/static/css/main.d1b05096.chunk.css",
+    "main.js": "/ai-daw/static/js/main.2aecb1fe.chunk.js",
+    "main.js.map": "/ai-daw/static/js/main.2aecb1fe.chunk.js.map",
+    "runtime-main.js": "/ai-daw/static/js/runtime-main.863040a8.js",
+    "runtime-main.js.map": "/ai-daw/static/js/runtime-main.863040a8.js.map",
+    "static/js/2.deb6de5a.chunk.js": "/ai-daw/static/js/2.deb6de5a.chunk.js",
+    "static/js/2.deb6de5a.chunk.js.map": "/ai-daw/static/js/2.deb6de5a.chunk.js.map",
+    "index.html": "/ai-daw/index.html",
+    "precache-manifest.c1cd87999cfa8b11b4b8b73f7f7ae416.js": "/ai-daw/precache-manifest.c1cd87999cfa8b11b4b8b73f7f7ae416.js",
+    "service-worker.js": "/ai-daw/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/ai-daw/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.deb6de5a.chunk.js.LICENSE": "/ai-daw/static/js/2.deb6de5a.chunk.js.LICENSE",
+    "static/media/logo.svg": "/ai-daw/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.863040a8.js",
+    "static/js/2.deb6de5a.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.2aecb1fe.chunk.js"
+  ]
+}
