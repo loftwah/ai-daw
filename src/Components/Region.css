@@ -1,0 +1,35 @@
+.region {
+  display: inline-block;
+  height: 100%;
+}
+
+.region-wrapper {
+  background: #80dbff;
+  border-radius: 8px;
+  display:flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  /* opacity: 0.4; */
+  box-sizing: border-box;
+  /* border: 2px solid #00b7ff; */
+}
+
+.region-wrapper.selected {
+  box-shadow: 0 0 4px 0 grey;
+}
+
+.region-svg {
+  /* background: #80dbff; */
+  /* border-radius: 8px; */
+  /* height: 100%; */
+  opacity: 0.4;
+  width: 100%;
+}
+
+.region-title {
+  background: #00b7ff;
+  color: white;
+  padding: 4px;
+  white-space: nowrap;
+}

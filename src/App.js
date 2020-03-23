@@ -23,12 +23,12 @@ Tone.Transport.setLoopPoints(0, "1m");
 Tone.Transport.loop = true;
 
 
-function hackNewNotes() {
+function hackNewRegion() {
   let notes = [];
-  for (let i = 0; i < 32; i++) {
+  for (let i = 0; i < 30; i++) {
     notes.push({pitch: Math.floor(Math.random() * (80 - 50)) + 40, duration: '8n', position: '0:0:' + 2*i});
   }
-  return notes
+  return {title: "melodyy", duration:"0:16:0", position:"0:0:0", notes: notes}
 }
 
 
@@ -38,12 +38,13 @@ function projectLength(tracks) {
     length = Tone.Time(Tone.Transport.loopEnd).toBarsBeatsSixteenths();
   }
   tracks.forEach((track) => {
-    track.notes.forEach((note) => {
-      let endPosition = utils.addBBSTimes(note.position, note.duration);
+    track.regions.forEach((region) => {
+      let endPosition = utils.addBBSTimes(region.position, region.duration);
       if (utils.compareBBSTimes(endPosition, length) > 0) {
         length = endPosition;
       }
     });
+
   });
   // console.log(length);
   return '0:' + Math.ceil(utils.BBSToBeats(length)) + ':0';
@@ -64,7 +65,7 @@ function App() {
   const [key, setKey] = useState(0);
   const [beatPixels, setBeatPixels] = useState(110);
   const [tracks, setTracks] = useState([
-    {instrument: new Tone.Synth().toMaster(), notes: [{pitch: 60, duration: '8n', position: '0:0:0'}, {pitch: 62, duration: '8n', position: '0:1:0'}, {pitch: 64, duration: '8n', position: '0:2:0'}]}
+    {instrument: new Tone.Synth().toMaster(), regions: [{title: "cde", position:'0:0:0', duration: '1:0:0',  notes: [{pitch: 60, duration: '8n', position: '0:0:0'}, {pitch: 62, duration: '8n', position: '0:1:0'}, {pitch: 64, duration: '8n', position: '0:2:0'}] }]}
   ]);
 
 
@@ -86,11 +87,14 @@ function App() {
   function updateTransport() {
     Tone.Transport.cancel();
     tracks.forEach((track) => {
-      track.notes.forEach((note) => {
-        Tone.Transport.schedule(function(time) {
-          track.instrument.triggerAttackRelease(Tone.Frequency(note.pitch, "midi").toNote(), note.duration, time);
-        }, note.position);
+      track.regions.forEach((region) => {
+        region.notes.forEach((note) => {
+          Tone.Transport.schedule(function(time) {
+            track.instrument.triggerAttackRelease(Tone.Frequency(note.pitch, "midi").toNote(), note.duration, time);
+          },  utils.addBBSTimes(note.position, region.position));
+        });
       });
+
     });
 
 
@@ -112,7 +116,7 @@ function App() {
         <div className="App-menu-bar">
           <button className="menu-button" onClick={() => {
             // console.log('hi');
-            setTracks(tracks.concat({instrument: new Tone.Synth().toMaster(), notes: hackNewNotes()}));
+            setTracks(tracks.concat({instrument: new Tone.Synth().toMaster(), regions: [hackNewRegion()]}));
             // console.log(tracks.length);
           }}>
             <FontAwesomeIcon icon={faPlus} /> new beat
