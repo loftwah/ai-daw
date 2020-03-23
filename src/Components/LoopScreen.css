@@ -1,0 +1,11 @@
+.loop-screen {
+  background: #ccfff2;
+  /* border-left: 1px solid #cccccc; */
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  /* z-index: -1; */
+
+  min-width: 8px;
+}

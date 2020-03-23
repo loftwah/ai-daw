@@ -1,0 +1,39 @@
+.master {
+  flex: 1;
+  /* background: red; */
+  display: flex;
+  position: relative;
+  overflow: auto;
+}
+
+.column.left {
+  /* background:blue; */
+  display: flex;
+  flex-direction: column;
+}
+
+.column.right {
+  /* background: green; */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: auto;
+  position: relative;
+}
+
+.pane {
+  overflow: auto;
+}
+
+.pane.top {
+  /* border: 1px solid black; */
+  /* border-bottom: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6; */
+  flex-shrink: 0;
+  /* padding: 8px; */
+  position: relative;
+}
+
+.pane.bottom.right {
+  position: relative;
+}

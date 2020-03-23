@@ -1,0 +1,12 @@
+.playhead {
+  background: red;
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 2;
+  border-radius: 100px;
+}
+
+.playhead.top {
+  bottom: 0;
+}

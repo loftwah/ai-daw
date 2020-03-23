@@ -1,0 +1,11 @@
+.clipping {
+  color: red;
+}
+
+.meter {
+  /* display: inline-block; */
+  background-color: red;
+  /* color: red; */
+  height: 2px;
+  /* position: relative; */
+}

@@ -1,0 +1,18 @@
+.num-box:last-child {
+  margin-right: 0;
+}
+
+.num-box {
+  margin-right: 8px;
+}
+
+.num {
+  /* display: inline-block; */
+  font-family: 'Roboto Mono', monospace;
+  margin-right: 2px;
+}
+
+
+.num-title {
+  font-size: 0.5em;
+}

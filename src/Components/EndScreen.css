@@ -1,0 +1,11 @@
+.end-screen {
+  background: #e6e6e6;
+  border-left: 1px solid #cccccc;
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+
+  min-width: 8px;
+}
