@@ -1,6 +1,7 @@
 .region {
-  display: inline-block;
+  /* display: inline-block; */
   height: 100%;
+  position: absolute;
 }
 
 .region-wrapper {

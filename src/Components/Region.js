@@ -1,7 +1,7 @@
 import React from 'react';
 // import {useRef, useEffect} from 'react';
 import './Region.css';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 import * as utils from '../CoolHelpers';
 
@@ -40,7 +40,7 @@ const rightMargin = 1;
 export default function Region(props) {
 
   return (
-    <div className="region" style={{width:props.data.beatPixels * utils.BBSToBeats(props.region.duration)}}>
+    <div className="region" style={{height: props.data.trackHeight - 2*props.data.trackDisplayPadding, width:props.data.beatPixels * utils.BBSToBeats(props.region.duration)}}>
       <div className="region-wrapper" style={{width:-1* rightMargin + props.data.beatPixels * utils.BBSToBeats(props.region.duration)}}>
         <div className="region-title">heyo
         </div>

@@ -17,12 +17,14 @@
 
 .track-header {
   background: #f2f2f2;
+  overflow: hidden;
   width: 150px;
 }
 
 .track-display {
   background: white;
   /* height: 100%; */
+  position: relative;
 }
 
 .delete-track {

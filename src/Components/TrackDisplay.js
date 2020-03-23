@@ -4,11 +4,18 @@ import Region from './Region';
 
 import * as utils from '../CoolHelpers';
 
+/*i have to do this - 2*0 bullshit in the height for some
+reason in order to get it to update . . . no clue why.
+I would think it has something to do with callbacks and
+shit but + 2*0 doesn't work either!
+ */
+
 export default function TrackDisplay(props) {
+  console.log(props.data.trackHeight);
   return (
-    <div className="track-part track-display" style={{padding: props.trackDisplayPadding, width: utils.BBSToBeats(props.data.projectMaxLength) * props.data.beatPixels}}>
+    <div className="track-part track-display" style={{height: props.data.trackHeight - 2*0, padding: props.data.trackDisplayPadding, width: utils.BBSToBeats(props.data.projectMaxLength) * props.data.beatPixels}}>
         {props.track.regions.map((region, index) => {
-          return <Region region={region} data={props.data} />;
+          return <Region region={region} data={props.data} key={index} />;
         })}
     </div>
   );
