@@ -1,5 +1,11 @@
 import Tone from "tone";
 
+export function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 export function BBSToBeats(bbs) {
   return Tone.Time(bbs).valueOf() * Tone.Transport.bpm.value / 60;
 }

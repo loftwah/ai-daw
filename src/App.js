@@ -6,24 +6,18 @@ import NavBar from './Components/NavBar';
 import TransportPosition from './Components/TransportPosition';
 import Meter from './Components/Meter';
 import TracksView from './Components/TracksView';
+import Generator from './Components/Generator';
 
 import * as utils from './CoolHelpers';
 
 //font awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPause, faPlay, faPlus, faStepForward, faStepBackward, faRuler } from '@fortawesome/free-solid-svg-icons'
+import { faPause, faPlay, faStepForward, faStepBackward, faRuler } from '@fortawesome/free-solid-svg-icons'
 
 import Tone from "tone";
 
 import metronome_bar from "./sounds/metronome_bar.mp3"
 import metronome_beat from "./sounds/metronome_beat.mp3"
-
-
-
-
-
-Tone.Transport.setLoopPoints(0, "1m");
-Tone.Transport.loop = true;
 
 const metronomeVolume = new Tone.Volume();
 const metronome = new Tone.Sampler({
@@ -32,16 +26,27 @@ const metronome = new Tone.Sampler({
 }).chain(metronomeVolume, Tone.Master);
 
 
-function hackNewRegion() {
-  let notes = [];
-  for (let i = 0; i < 30; i++) {
-    notes.push({pitch: Math.floor(Math.random() * (80 - 50)) + 40, duration: '8n', position: '0:0:' + 2*i});
-  }
-  return {title: "melodyy", duration:"0:16:0", position:"0:0:0", notes: notes}
+
+
+Tone.Transport.setLoopPoints(0, "1m");
+Tone.Transport.loop = true;
+
+function contentLength(tracks) {
+	let length = '0:0:0';
+	tracks.forEach((track) => {
+		track.regions.forEach((region) => {
+			let endPosition = utils.addBBSTimes(region.position, region.duration);
+			if (utils.compareBBSTimes(endPosition, length) > 0) {
+				length = endPosition;
+			}
+		});
+
+	});
+	// console.log(length);
+	return '0:' + utils.BBSToBeats(length) + ':0';
 }
 
-
-function projectLength(tracks) {
+function projectLength(tracks) { //includes loop
   let length = '0:0:0';
   if (Tone.Transport.loop) {
     length = Tone.Time(Tone.Transport.loopEnd).toBarsBeatsSixteenths();
@@ -56,7 +61,7 @@ function projectLength(tracks) {
 
   });
   // console.log(length);
-  return '0:' + Math.ceil(utils.BBSToBeats(length)) + ':0';
+  return '0:' + utils.BBSToBeats(length) + ':0';
 }
 
 function projectMaxLength(tracks) {
@@ -76,7 +81,7 @@ function App() {
   const [tracks, setTracks] = useState([
     {instrument: new Tone.Synth().toMaster(), regions: [{title: "cde", position:'0:0:0', duration: '1:0:0',  notes: [{pitch: 60, duration: '8n', position: '0:0:0'}, {pitch: 62, duration: '8n', position: '0:1:0'}, {pitch: 64, duration: '8n', position: '0:2:0'}] }]}
   ]);
-	const [metronomeIsMuted, setMetronomeIsMuted] = useState(false);
+	const [metronomeIsMuted, setMetronomeIsMuted] = useState(true);
 
 
   useEffect(() => {
@@ -134,13 +139,7 @@ function App() {
           <input id="title" type="text" placeholder="Untitled Project"></input>
         </div>
         <div className="App-menu-bar">
-          <button className="menu-button" onClick={() => {
-            // console.log('hi');
-            setTracks(tracks.concat({instrument: new Tone.Synth().toMaster(), regions: [hackNewRegion()]}));
-            // console.log(tracks.length);
-          }}>
-            <FontAwesomeIcon icon={faPlus} /> new beat
-          </button>
+					<Generator data={{tracks: tracks}} methods={{setTracks: setTracks, contentLength: contentLength, setTempo: setTempo}}/>
           <button className="menu-button" onClick={() => {
             Tone.Transport.pause();
             Tone.Transport.position = "0:0:0";
