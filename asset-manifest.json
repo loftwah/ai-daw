@@ -1,24 +1,28 @@
 {
   "files": {
-    "main.css": "/ai-daw/static/css/main.85ab2849.chunk.css",
-    "main.js": "/ai-daw/static/js/main.f95b63fd.chunk.js",
-    "main.js.map": "/ai-daw/static/js/main.f95b63fd.chunk.js.map",
+    "main.css": "/ai-daw/static/css/main.4d743c4d.chunk.css",
+    "main.js": "/ai-daw/static/js/main.0a485ee0.chunk.js",
+    "main.js.map": "/ai-daw/static/js/main.0a485ee0.chunk.js.map",
     "runtime-main.js": "/ai-daw/static/js/runtime-main.641cceac.js",
     "runtime-main.js.map": "/ai-daw/static/js/runtime-main.641cceac.js.map",
-    "static/js/2.2ca08a70.chunk.js": "/ai-daw/static/js/2.2ca08a70.chunk.js",
-    "static/js/2.2ca08a70.chunk.js.map": "/ai-daw/static/js/2.2ca08a70.chunk.js.map",
+    "static/js/2.ff0ccf03.chunk.js": "/ai-daw/static/js/2.ff0ccf03.chunk.js",
+    "static/js/2.ff0ccf03.chunk.js.map": "/ai-daw/static/js/2.ff0ccf03.chunk.js.map",
     "index.html": "/ai-daw/index.html",
-    "precache-manifest.0ccbbdf72809a28ebb5500a6595f97f9.js": "/ai-daw/precache-manifest.0ccbbdf72809a28ebb5500a6595f97f9.js",
+    "precache-manifest.fd0a7452e4a5712b6a2648ada5161d58.js": "/ai-daw/precache-manifest.fd0a7452e4a5712b6a2648ada5161d58.js",
     "service-worker.js": "/ai-daw/service-worker.js",
-    "static/css/main.85ab2849.chunk.css.map": "/ai-daw/static/css/main.85ab2849.chunk.css.map",
-    "static/js/2.2ca08a70.chunk.js.LICENSE.txt": "/ai-daw/static/js/2.2ca08a70.chunk.js.LICENSE.txt",
+    "static/css/main.4d743c4d.chunk.css.map": "/ai-daw/static/css/main.4d743c4d.chunk.css.map",
+    "static/js/2.ff0ccf03.chunk.js.LICENSE.txt": "/ai-daw/static/js/2.ff0ccf03.chunk.js.LICENSE.txt",
+    "static/media/clap.wav": "/ai-daw/static/media/clap.a48d86a4.wav",
+    "static/media/hihat.wav": "/ai-daw/static/media/hihat.8b51681f.wav",
+    "static/media/kick.wav": "/ai-daw/static/media/kick.e35f0635.wav",
     "static/media/metronome_bar.mp3": "/ai-daw/static/media/metronome_bar.25dc09ed.mp3",
-    "static/media/metronome_beat.mp3": "/ai-daw/static/media/metronome_beat.fb3e8560.mp3"
+    "static/media/metronome_beat.mp3": "/ai-daw/static/media/metronome_beat.fb3e8560.mp3",
+    "static/media/snare.wav": "/ai-daw/static/media/snare.e682a7ad.wav"
   },
   "entrypoints": [
     "static/js/runtime-main.641cceac.js",
-    "static/js/2.2ca08a70.chunk.js",
-    "static/css/main.85ab2849.chunk.css",
-    "static/js/main.f95b63fd.chunk.js"
+    "static/js/2.ff0ccf03.chunk.js",
+    "static/css/main.4d743c4d.chunk.css",
+    "static/js/main.0a485ee0.chunk.js"
   ]
 }
