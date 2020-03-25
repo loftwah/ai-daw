@@ -36,7 +36,7 @@ export default function Meter(props) {
   return (
     <AnimatedRenderer render={data => (
       <>
-      <div style={{width: width, textAlign:"left", position:"relative"}} className="menu-button disabled">
+      <div style={{width: width, textAlign:"left", position:"relative"}} className="menu-button static">
 
         <input className="fader" style={{position:"absolute", width: width, margin:0}} type='range' min="-100" max="10" step="0.1" value={volume} onChange={(e) => {setVolume(e.target.value)}}/>
         <input type='number' value={volume} onChange={(e) => {setVolume(e.target.value)}} style={{width: "100%"}}/>

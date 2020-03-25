@@ -45,7 +45,7 @@ function renderRuler(data) {
 
 export default function TimelineRuler(props) {
   return (
-    <div className="track-part top" style={{padding: props.trackDisplayPadding, width: utils.BBSToBeats(props.data.projectMaxLength) * props.data.beatPixels}}>
+    <div className="track-part top right" style={{padding: props.data.trackDisplayPadding, width: utils.BBSToBeats(props.data.projectMaxLength) * props.data.beatPixels}}>
       <svg height="100" width={utils.BBSToBeats(props.data.projectMaxLength) * props.data.beatPixels}>
           {renderRuler(props.data)}
       </svg>

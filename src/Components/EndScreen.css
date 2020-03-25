@@ -1,6 +1,7 @@
 .end-screen {
   background: #e6e6e6;
   border-left: 1px solid #cccccc;
+  box-sizing: border-box;
   height: 100%;
   opacity: 0.5;
   position: absolute;

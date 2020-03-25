@@ -37,3 +37,27 @@
 .pane.bottom.right {
   position: relative;
 }
+
+.tracks-view-sliders-container {
+  z-index: 5;
+  position: fixed;
+  right: 0;
+}
+
+.tracks-view-slider {
+  display: inline-block;
+  background: white;
+  box-shadow: 0 0 8px 0 black;
+  border-radius: 8px;
+  margin: 4px;
+  opacity: 0.8;
+  padding: 8px;
+}
+
+.tracks-view-slider > input {
+  width: 50px;
+}
+
+.tracks-view-slider-title {
+  margin-right: 8px;
+}

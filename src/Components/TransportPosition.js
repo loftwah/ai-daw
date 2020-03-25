@@ -11,14 +11,14 @@ export default function TransportPosition() {
 
     <AnimatedRenderer render={data => (
       <>
-        <div className="menu-button disabled">{Tone.Transport.position.split(':').map((num, index) => {
+        <div className="menu-button static">{Tone.Transport.position.split(':').map((num, index) => {
           return (
             <span className='num-box' key={index}><span className='num'>{Math.floor(num)}</span><span className='num-title'>{numTitles[index]}</span></span>
           );
         })}</div>
       </>
     )} />
-    
+
 
   );
 }

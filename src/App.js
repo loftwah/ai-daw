@@ -11,9 +11,12 @@ import * as utils from './CoolHelpers';
 
 //font awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPause, faPlay, faPlus, faStepForward, faStepBackward } from '@fortawesome/free-solid-svg-icons'
+import { faPause, faPlay, faPlus, faStepForward, faStepBackward, faRuler } from '@fortawesome/free-solid-svg-icons'
 
 import Tone from "tone";
+
+import metronome_bar from "./sounds/metronome_bar.mp3"
+import metronome_beat from "./sounds/metronome_beat.mp3"
 
 
 
@@ -21,6 +24,12 @@ import Tone from "tone";
 
 Tone.Transport.setLoopPoints(0, "1m");
 Tone.Transport.loop = true;
+
+const metronomeVolume = new Tone.Volume();
+const metronome = new Tone.Sampler({
+	"60" : new Tone.Buffer(metronome_bar),
+	"61" : new Tone.Buffer(metronome_beat)
+}).chain(metronomeVolume, Tone.Master);
 
 
 function hackNewRegion() {
@@ -67,9 +76,12 @@ function App() {
   const [tracks, setTracks] = useState([
     {instrument: new Tone.Synth().toMaster(), regions: [{title: "cde", position:'0:0:0', duration: '1:0:0',  notes: [{pitch: 60, duration: '8n', position: '0:0:0'}, {pitch: 62, duration: '8n', position: '0:1:0'}, {pitch: 64, duration: '8n', position: '0:2:0'}] }]}
   ]);
+	const [metronomeIsMuted, setMetronomeIsMuted] = useState(false);
 
 
   useEffect(() => {
+    metronomeVolume.mute = metronomeIsMuted;
+
     if (playing) {
       Tone.Transport.start();
     } else {
@@ -96,6 +108,14 @@ function App() {
       });
 
     });
+
+    for (let i = 0; i < utils.BBSToBeats(projectMaxLength(tracks)); i++) {
+
+      let pitch = i%Tone.Transport.timeSignature === 0? 60 : 61;
+      Tone.Transport.schedule(function(time) {
+        metronome.triggerAttackRelease(Tone.Frequency(pitch, 'midi').toNote(), 0.1, time);
+      }, '0:' + i + ":0");
+    }
 
 
   }
@@ -170,12 +190,25 @@ function App() {
 
           <Meter source={Tone.Master}/>
 
-          <input type="range" min="10" max="310" step="50" value={beatPixels} onChange={(e) => setBeatPixels(e.target.value)}></input>
-          {beatPixels}
+
+
+
+
+					{/*style={{background: metronomeIsMuted ? "grey" : "meadiumseagreen"}}*/}
+          <button className={"menu-button metronome "+ (metronomeIsMuted ? "muted" : "unmuted")} onClick={() => {
+						if (Tone.context.state !== 'running') {
+              Tone.context.resume();
+            }
+						setMetronomeIsMuted(!metronomeIsMuted);
+					}}>
+            <FontAwesomeIcon icon={faRuler} />
+          </button>
+            {/*<input type="range" min="10" max="310" step="50" value={beatPixels} onChange={(e) => setBeatPixels(e.target.value)}></input>*/}
+
 
         </div>
       </header>
-      <TracksView data={{tracks: tracks, beatPixels: beatPixels, projectLength: projectLength(tracks), projectMaxLength: projectMaxLength(tracks)}} methods={{removeTrack: removeTrack}}/>
+      <TracksView data={{tracks: tracks, beatPixels: beatPixels, projectLength: projectLength(tracks), projectMaxLength: projectMaxLength(tracks)}} methods={{removeTrack: removeTrack, setBeatPixels: setBeatPixels}}/>
       <footer className="App-menu-bar">fotoer
       </footer>
     </div>

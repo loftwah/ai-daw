@@ -1,6 +1,5 @@
 import React from 'react';
 import {useState} from 'react';
-import {useEffect} from 'react';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 import "../HiddenScrollbar.css";
 import "./TracksView.css";
@@ -13,8 +12,10 @@ import EndScreen from './EndScreen';
 import LoopScreen from './LoopScreen';
 import TimelineRuler from './TimelineRuler.js';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowsAltV, faArrowsAltH} from '@fortawesome/free-solid-svg-icons'
+
 const trackDisplayPadding = 8;
-// const trackHeight = 120;
 
 export default function TracksView(props) {
     const [trackHeight, setTrackHeight] = useState(120);
@@ -26,7 +27,7 @@ export default function TracksView(props) {
       <ScrollSync>
         <div className="master">
           <div className="column left">
-            <div className="pane top left track-part top">header</div>
+            <div className="pane top left track-part">header</div>
             <ScrollSyncPane group={["horizontal", "vertical"]}>
               <div className="pane bottom left hidden-scrollbar">
                 {props.data.tracks.map((track, index) => {
@@ -39,7 +40,16 @@ export default function TracksView(props) {
 
             <ScrollSyncPane group={["horizontal", "vertical"]}>
               <div className="pane top right hidden-scrollbar">
-                <input type="range" style={{position:"fixed", zIndex:17}}  min="10" max="310" step="10" value={trackHeight} onChange={(e) => setTrackHeight(e.target.value)}></input>
+                <div className="tracks-view-sliders-container" >
+                  <div className="tracks-view-slider">
+                    <span className="tracks-view-slider-title"><FontAwesomeIcon icon={faArrowsAltV}/></span>
+                    <input type="range" min="10" max="310" step="10" value={trackHeight} onChange={(e) => setTrackHeight(e.target.value)}></input>
+                  </div>
+                  <div className="tracks-view-slider">
+                    <span className="tracks-view-slider-title"><FontAwesomeIcon icon={faArrowsAltH}/></span>
+                    <input type="range" min="10" max="310" step="50" value={props.data.beatPixels} onChange={(e) => props.methods.setBeatPixels(e.target.value)}></input>
+                  </div>
+                </div>
                 <Playhead variant={'top'} data={newData}/>
                 <LoopScreen data={newData}/>
                 <EndScreen variant={'top'} data={newData}/>
@@ -48,6 +58,7 @@ export default function TracksView(props) {
             </ScrollSyncPane>
             <ScrollSyncPane group={["horizontal", "vertical"]}>
               <div className="pane bottom right">
+
                 <Playhead variant={'bottom'} data={newData}/>
                 <EndScreen variant={'bottom'} data={newData}/>
                 {props.data.tracks.map((track, index) => {

@@ -42,7 +42,8 @@ export default function Region(props) {
   return (
     <div className="region" style={{height: props.data.trackHeight - 2*props.data.trackDisplayPadding, width:props.data.beatPixels * utils.BBSToBeats(props.region.duration)}}>
       <div className="region-wrapper" style={{width:-1* rightMargin + props.data.beatPixels * utils.BBSToBeats(props.region.duration)}}>
-        <div className="region-title">heyo
+        <div className="region-title">
+          {props.region.title}
         </div>
         <svg preserveAspectRatio="none" viewBox={"0 0 " + svgSize + " "+ svgSize} className="region-svg" style={{width:"calc(100% + 1px)"}}>
           {renderRegion(props.region, props.data)}

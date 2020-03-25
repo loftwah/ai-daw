@@ -1,5 +1,7 @@
 .track-part.top {
-  height: 2em;
+  height: 3em;
+  overflow-y: hidden;
+  box-sizing: border-box;
 }
 
 .track-part {
@@ -10,7 +12,11 @@
   padding: 8px;
 }
 
-.track-header, .track-display {
+.track-part.left {
+  width: 150px;
+}
+
+.track-part.bottom {
   height: 120px;
   box-sizing: border-box;
 }
@@ -18,7 +24,6 @@
 .track-header {
   background: #f2f2f2;
   overflow: hidden;
-  width: 150px;
 }
 
 .track-display {
@@ -32,4 +37,11 @@
   color: white;
   /* font-size: 2em; */
   padding: 8px;
+}
+
+.timeline-grid {
+  position: absolute;
+  /* z-index:100; */
+  top: 0;
+  height:100%;
 }
